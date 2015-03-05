@@ -1,3 +1,15 @@
+[core]
+	autocrlf = input
+	filemode = false
 [user]
-	email = me@jonatankarlsson.se
 	name = Jonatan Karlsson
+	email = me@jonatankarlsson.se
+[push]
+	default = simple
+[merge]
+	tool = kdiff3
+[diff]
+	tool = kdiff3
+[alias]
+	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+
