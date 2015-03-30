@@ -5,19 +5,15 @@ export ZSH=$HOME/.oh-my-zsh
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
-ZSH_THEME="zhann"
+ZSH_THEME="bira"
 
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-alias commit='git commit -m'
-
+alias commit='git commit'
 
 alias l='ls -laF'
-
-# List only directories
 alias lsd='ls -l ${colorflag} | grep "^d"'
 
 # Easier navigation: .., ..., ...., ....., ~ and -
@@ -27,11 +23,8 @@ alias ....="cd ../../.."
 alias .....="cd ../../../.."
 alias ~="cd ~" 
 
-# `cd` is probably faster to type though
-alias -- -="cd -"
-
-#editor
-alias ee="pico"
+# Editor
+alias ee="vim"
 
 # Shortcuts
 alias d="cd ~/Dropbox"
@@ -45,12 +38,8 @@ alias install="sudo apt-get install "
 alias update="sudo apt-get update && sudo apt-get upgrade"
 alias remove="sudo apt-get remove "
 
-# npm
-alias npminstG="sudo npm -g "
-alias npminst= "sudo npm "
-
 # ssh shortcuts
-alias sshjonatan="ssh adminuser@141.255.190.165"
+alias sshjon="ssh adminuser@141.255.190.165"
 alias sshbth="ssh jokd13@ssh.student.bth.se"
 
 
@@ -114,7 +103,7 @@ export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/g
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
+export SSH_KEY_PATH="~/.ssh/dsa_id"
 
 # if [[ ! $TERM =~ screen ]]; then
 #     exec tmux

@@ -1,6 +1,7 @@
 [core]
 	autocrlf = input
 	filemode = false
+	editor = vim
 [user]
 	name = Jonatan Karlsson
 	email = me@jonatankarlsson.se
