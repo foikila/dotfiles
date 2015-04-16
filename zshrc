@@ -42,7 +42,7 @@ alias remove="sudo apt-get remove "
 alias sshjon="ssh adminuser@141.255.190.165"
 alias sshbth="ssh jokd13@ssh.student.bth.se"
 
-alias server="python -m SimpleHTTPServer 8888 &"
+alias server="python -m SimpleHTTPServer "
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
