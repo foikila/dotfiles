@@ -41,7 +41,7 @@ alias remove="sudo apt-get remove "
 # ssh shortcuts
 alias sshjon="ssh adminuser@141.255.190.165"
 alias sshbth="ssh jokd13@ssh.student.bth.se"
-
+alias sshgimli="ssh foiki@46.101.10.71"
 alias server="python -m SimpleHTTPServer "
 
 # Uncomment the following line to use case-sensitive completion.
