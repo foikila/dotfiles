@@ -1,0 +1,33 @@
+"*":
+  editor:
+    invisibles: {}
+    scrollPastEnd: true
+    showLineNumbers: true
+    tabLength: 4
+    fontSize: 17
+  core:
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+    disabledPackages: [
+      "spell-check"
+    ]
+  "exception-reporting":
+    userId: "16f663c5-c2f7-6b94-e73b-9af2ff99d45e"
+  welcome:
+    showOnStartup: false
+  linter:
+    ignoredLinterErrors: [
+      "phpcs"
+      "phpmd"
+      "shellcheck"
+    ]
+  whitespace: {}
+  "linter-jscs":
+    harmony: true
+  "spell-check": {}
+".gfm.source":
+  whitespace:
+    removeTrailingWhitespace: false
+    ignoreWhitespaceOnCurrentLine: false
