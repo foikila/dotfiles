@@ -7,11 +7,11 @@
 	email = me@jonatankarlsson.se
 [push]
 	default = simple
-[merge]
-	tool = kdiff3
-[diff]
-	tool = kdiff3
 [alias]
 	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
 	stash-unapply = !git stash show -p | git apply -R
-
+	# Once cloned, get the submodule.
+	sub-init= submodule update --init --recursive
+	# Update submodule
+	sub-up= submodule update
+	re-lo-com= reset HEAD~1
