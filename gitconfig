@@ -14,4 +14,4 @@
 	sub-init= submodule update --init --recursive
 	# Update submodule
 	sub-up= submodule update
-	re-lo-com= reset HEAD~1
+	re-lo-com= reset --soft HEAD~1
