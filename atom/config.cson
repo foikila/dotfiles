@@ -1,0 +1,50 @@
+"*":
+  editor:
+    invisibles: {}
+    scrollPastEnd: true
+    showLineNumbers: true
+    tabLength: 4
+    softWrapAtPreferredLineLength: true
+    fontSize: 18
+    softWrap: true
+    backUpBeforeSaving: true
+  core:
+    themes: [
+      "atom-dark-ui"
+      "atom-dark-syntax"
+    ]
+    disabledPackages: [
+      "linter-xmllint"
+      "linter-shellcheck"
+      "linter-pylint"
+      "linter-phpmd"
+      "linter-php"
+      "linter-htmlhint"
+      "linter-csslint"
+      "linter-jscs"
+      "linter"
+      "linter-jshint"
+    ]
+  "exception-reporting":
+    userId: "16f663c5-c2f7-6b94-e73b-9af2ff99d45e"
+  welcome:
+    showOnStartup: false
+  linter:
+    ignoredLinterErrors: [
+      "phpcs"
+      "phpmd"
+      "shellcheck"
+    ]
+  whitespace: {}
+  "linter-jscs":
+    harmony: true
+    esnext: true
+    preset: "crockford"
+    onlyConfig: true
+  "spell-check": {}
+  "markdown-preview": {}
+  "linter-jshint": {}
+".gfm.source":
+  whitespace:
+    removeTrailingWhitespace: false
+    ignoreWhitespaceOnCurrentLine: false
