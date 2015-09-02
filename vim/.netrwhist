@@ -1,5 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =7
 let g:netrw_dirhist_1='/home/foiki/Dropbox/test1/app/lang/en'
 let g:netrw_dirhist_2='/home/foiki/.vim'
 let g:netrw_dirhist_3='/home/foiki/.gnome'
+let g:netrw_dirhist_4='/home/foiki/.bash_it/aliases'
+let g:netrw_dirhist_5='/home/foiki/.bash_it/aliases/available'
+let g:netrw_dirhist_6='/home/foiki/dev/templateEngine'
+let g:netrw_dirhist_7='/home/foiki'
