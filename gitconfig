@@ -16,3 +16,4 @@
 	sub-up= submodule update
 	re-lo-com= reset --soft HEAD~1
 	s = status
+	tree = log --graph --decorate --pretty=oneline --abbrev-commit
