@@ -8,12 +8,15 @@
 [push]
 	default = simple
 [alias]
-	hist = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	s = status
+	# fancy logs
+	tree = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+	hist = log --graph --decorate --pretty=oneline --abbrev-commit
+	#
 	stash-unapply = !git stash show -p | git apply -R
 	# Once cloned, get the submodule.
 	sub-init= submodule update --init --recursive
 	# Update submodule
 	sub-up= submodule update
+	# Unaplies local commit but wont remove whats added to it.
 	re-lo-com= reset --soft HEAD~1
-	s = status
-	tree = log --graph --decorate --pretty=oneline --abbrev-commit
