@@ -1,0 +1,32 @@
+#!/bin/bash
+
+#
+# Simple script to run commands on all git or hg sub-directories
+#
+# Example usage:
+#	
+# 	./batch hg in 
+#
+ 
+
+repos=` find -maxdepth 2 -name '.hg' -o -name '.git' | sed 's/\/.hg\|.git//' `
+
+for r in $repos
+do
+	echo -e "\e[31mRepo: $r\e[0m" >&2
+	
+	cd $r && $*
+        COMMAND_STATUS="$?"	
+
+	# Only stop script if command contains "clean"
+	# and status code was 1
+	if [[ "$*" == *clean* ]] 
+	then 
+		if [[ $COMMAND_STATUS != 0  ]]
+		then
+			exit
+		fi
+	fi
+
+	cd -
+done
