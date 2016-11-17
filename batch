@@ -9,7 +9,7 @@
 #
  
 
-repos=` find -maxdepth 2 -name '.hg' -o -name '.git' | sed 's/\/.hg\|.git//' `
+repos=` find -maxdepth 2 -name '.hg' -o -name '.git' | sort -r | sed 's/\/.hg\|.git//' `
 
 for r in $repos
 do
