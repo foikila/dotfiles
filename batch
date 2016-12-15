@@ -1,32 +1,98 @@
 #!/bin/bash
 
 #
-# Simple script to run commands on all git or hg sub-directories
+# Simple script to run mass commands on all sub-directories. If a
+# repo file is provided the command will be executed on those dirs
 #
 # Example usage:
-#	
-# 	./batch hg in 
 #
- 
+# 	./batch hg in
+#
+FILENAME="repo_list.txt"
 
-repos=` find -maxdepth 2 -name '.hg' -o -name '.git' | sort -r | sed 's/\/.hg\|.git//' `
+if [ -f ${FILENAME} ];
+then
 
-for r in $repos
-do
-	echo -e "\e[31mRepo: $r\e[0m" >&2
-	
-	cd $r && $*
-        COMMAND_STATUS="$?"	
+    SIZE=`cat ${FILENAME} | wc -l`
+    if [ $SIZE -lt 0 ]
+    then
+        echo -e "The repo-file didn't contain any repos"
+        exit
+    fi
 
-	# Only stop script if command contains "clean"
-	# and status code was 1
-	if [[ "$*" == *clean* ]] 
-	then 
-		if [[ $COMMAND_STATUS != 0  ]]
-		then
-			exit
-		fi
-	fi
+    for r in `cat ${FILENAME}`
+    do
+        echo -e "\e[31mRepo: ./$r\e[0m" >&2
 
-	cd -
-done
+        if [[ ! -d "./$r" ]]
+        then
+            # skipping repo that cannot be found
+            continue
+        fi
+
+        # go to dir and exec command
+        cd "./$r" && $*
+        COMMAND_STATUS="$?"
+
+        # Only stop script if command contains "clean"
+        # and status code was 1
+        if [[ "$*" == *clean* ]]
+        then
+
+            if [[ ${COMMAND_STATUS} != 0  ]]
+            then
+                exit
+            fi
+        fi
+
+        cd -
+	done
+
+else
+
+    echo -e
+    echo -e "Could not found the repo file: ./$FILENAME"
+    echo -e
+
+    sleep 3
+
+
+    #
+    # yes, yes copy paste ftw
+    #
+
+    REPOS=` find -maxdepth 2 -name '.hg' -o -name '.git' | sort -r | sed 's/\/.hg\|.git//' `
+
+    for r in $REPOS
+    do
+        echo -e "\e[31mRepo: $r\e[0m" >&2
+
+
+        if [[ "$r" == *joda-next* ]]
+        then
+            echo -e "joda-next"
+            #
+            # Yoda skip we will
+            #
+            continue
+        fi
+
+
+        cd $r && $*
+        COMMAND_STATUS="$?"
+
+        # Only stop script if command contains "clean"
+        # and status code was 1
+        if [[ "$*" == *clean* ]]
+        then
+
+            if [[ $COMMAND_STATUS != 0  ]]
+            then
+                exit
+            fi
+        fi
+
+        cd -
+    done
+
+fi
