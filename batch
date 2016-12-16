@@ -59,7 +59,7 @@ else
     echo -e "Could not found the repo file: ./$FILENAME"
     echo -e
 
-    sleep 121
+    sleep 3
 
 
     #
@@ -105,11 +105,5 @@ fi
 end=`date +%s`
 
 runtime=$((end-start))
-
-if [[ $runtime -gt 120 ]]
-then
-	runtime=$(($runtime/60))
-fi
-
 echo "Exec time: $runtime" 
 
