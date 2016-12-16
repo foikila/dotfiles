@@ -8,7 +8,12 @@
 #
 # 	./batch hg in
 #
+
+start=`date +%s`
+
+
 FILENAME="repo_list.txt"
+
 
 if [ -f ${FILENAME} ];
 then
@@ -54,7 +59,7 @@ else
     echo -e "Could not found the repo file: ./$FILENAME"
     echo -e
 
-    sleep 3
+    sleep 121
 
 
     #
@@ -92,7 +97,19 @@ else
             fi
         fi
 
-        cd -
+	cd -
     done
 
 fi
+
+end=`date +%s`
+
+runtime=$((end-start))
+
+if [[ $runtime -gt 120 ]]
+then
+	runtime=$(($runtime/60))
+fi
+
+echo "Exec time: $runtime" 
+
