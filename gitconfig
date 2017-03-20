@@ -2,6 +2,7 @@
 	autocrlf = input
 	filemode = false
 	editor = vim
+	trustctime = false
 [user]
 	name = Jonatan Karlsson
 	email = me@jonatankarlsson.se
@@ -11,8 +12,11 @@
 	s = status
 	# fancy logs
 	tree = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	hist = log --graph --decorate --pretty=oneline --abbrev-commit
-	#
+	hist = log --graph --decorate --pretty=oneline --abbrev-commit --date=short
+	view = log --branches --remotes --decorate --oneline --graph --date=short
+	glog = log --graph --branches --remotes --decorate
+	# show files that changed on given commit
+	file-change = diff-tree --name-status -r 
 	stash-unapply = !git stash show -p | git apply -R
 	# Once cloned, get the submodule.
 	sub-init= submodule update --init --recursive
@@ -20,3 +24,17 @@
 	sub-up= submodule update
 	# Unaplies local commit but wont remove whats added to it.
 	re-lo-com= reset --soft HEAD~1
+	# Show diff in commit editor
+	com = commit -v
+[merge]
+	tool = kdiff3
+[mergetool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+	prompt = false
+[diff]
+	tool = kdiff3
+[difftool "kdiff3"]
+	path = /usr/bin/kdiff3
+	trustExitCode = false
+	prompt = false
