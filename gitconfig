@@ -26,6 +26,10 @@
 	re-lo-com= reset --soft HEAD~1
 	# Show diff in commit editor
 	com = commit -v
+	activebranch = "!git branch | egrep '^\\*' | sed 's/\\* //'"
+	out-to-main = "!git log master..`git activebranch`"
+	in-from-main = "!git log `git activebranch`..master"
+
 [merge]
 	tool = kdiff3
 [mergetool "kdiff3"]
