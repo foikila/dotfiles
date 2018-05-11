@@ -4,7 +4,7 @@ DEFAULT_MENU="[begin] (fluxbox) \n
 [exec] (Intellij) { ~/.local/share/JetBrains/Toolbox/apps/IDEA-C/ch-0/181.4892.42/bin/idea.sh} \n
 [exec] (Firefox) { firefox } \n
 [exec] (Chrome) { google-chrome } \n
-[exec] (SqlDevelopoer) { sqldeveloper } \n
+[exec] (SqlDeveloper) { sqldeveloper } \n
 [exec] (VS code) { code -n } \n
 [exec] (Atom) { atom -n } \n
 [exec] (Terminal) { gnome-terminal } <>\n
@@ -12,9 +12,9 @@ DEFAULT_MENU="[begin] (fluxbox) \n
 [nop]\n
 \n
 [include] (~/dotfiles/fluxbox/${HOSTNAME}.menu)\n
-
+\n
 [nop]\n
-
+\n
 [reconfig] (Reconfigure)\n
 [restart] (Restart)\n
 [exit] (Exit)\n

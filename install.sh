@@ -8,7 +8,15 @@ CP="cp -i"
 
 # DE stuff
 
-./$1/menu-install.sh
+cd $1
+
+./de-install.sh
+
+cd -
+
+# prog
+
+sudo apt install kdiff3 clipit git 
 
 # Configs
 

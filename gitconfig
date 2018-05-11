@@ -30,10 +30,10 @@
 	activebranch = "!git branch | egrep '^\\*' | sed 's/\\* //'"
 	out-to-main = "!git log master..`git activebranch`"
 	in-from-main = "!git log `git activebranch`..master"	   
-    	# Find "creation date" of a file. (first added)
-    	find-first-a= log --diff-filter=A --follow --format=%aD -1 --     
-    	# Find "deletion date" of a file. (first added)
-    	find-first-d= log --diff-filter=D --follow --format=%aD -1 -- 
+    # Find "creation date" of a file. (first added)
+    find-first-a= log --diff-filter=A --follow --format=%aD -1 --     
+    # Find "deletion date" of a file. (first deleted)
+    find-first-d= log --diff-filter=D --follow --format=%aD -1 -- 
 
 [merge]
 	tool = kdiff3
