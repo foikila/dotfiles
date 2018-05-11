@@ -14,8 +14,5 @@ Change directory to dotfiles/
 
 The simply type
 ```
-$ make
+$ ./install.sh [desktop-env]
 ```
-
-
-

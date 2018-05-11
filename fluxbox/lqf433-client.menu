@@ -1,0 +1,8 @@
+[begin] (fluxbox)
+
+[submenu] (Browsers sandbox)
+    [exec] (chrome sandbox) { ssh -Y sandbox@localhost google-chrome-stable http://localhost:41680/test-servicegui }
+    [exec] (firefox-test sandbox) { ssh -Y sandbox@localhost firefox http://localhost:41680/test-servicegui }
+[end]
+
+[end]
