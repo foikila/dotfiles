@@ -9,6 +9,10 @@ DEFAULT_MENU="[begin] (fluxbox) \n
 [exec] (Atom) { atom -n } \n
 [exec] (Terminal) { gnome-terminal } <>\n
 \n
+[submenu] (Kill) \n
+    [exec] (Intellij) { pgrep  -f JetBrains | xargs kill } \n
+[end]\n
+\n
 [nop]\n
 \n
 [include] (~/dotfiles/fluxbox/${HOSTNAME}.menu)\n
