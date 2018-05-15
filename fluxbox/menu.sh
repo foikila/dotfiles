@@ -11,6 +11,7 @@ DEFAULT_MENU="[begin] (fluxbox) \n
 \n
 [submenu] (Kill) \n
     [exec] (Intellij) { pgrep  -f JetBrains | xargs kill } \n
+    [exec] (Firefox) { pgrep  -f firefox | xargs kill } \n
 [end]\n
 \n
 [nop]\n
