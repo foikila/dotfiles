@@ -1,0 +1,6 @@
+#
+# Specific java aliases
+#
+
+# change jdk version
+alias config-java="sudo update-alternatives --config java"
