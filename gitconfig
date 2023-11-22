@@ -1,49 +1,36 @@
 [core]
-	autocrlf = input
-	filemode = false
-	editor = vim
-	trustctime = false
+  autocrlf = input
+  filemode = false
+  editor = vim
+  trustctime = false
 [user]
-	name = Jonatan Karlsson
-	email = me@jonatankarlsson.se
+  name = Jonatan Karlsson
+  email = me@jonatankarlsson.se
 [push]
-	default = simple
+  default = simple
 [alias]
-	s = status
-	# fancy logs
-	tree = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
-	hist = log --graph --decorate --pretty=oneline --abbrev-commit --date=short
-	view = log --branches --remotes --decorate --oneline --graph --date=short
-	glog = log --graph --branches --remotes --decorate
-	# show files that changed on given commit
-	file-change = diff-tree --name-status -r 
-	stash-unapply = !git stash show -p | git apply -R
-	# Once cloned, get the submodule.
-	sub-init= submodule update --init --recursive
-	# Update submodule
-	sub-up= submodule update
-	# Unaplies local commit but wont remove whats added to it.
-	re-lo-com= reset --soft HEAD~1
-	# Show diff in commit editor
-	com = commit -v
-	c = checkout
-	activebranch = "!git branch | egrep '^\\*' | sed 's/\\* //'"
-	out-to-main = "!git log master..`git activebranch`"
-	in-from-main = "!git log `git activebranch`..master"	   
-    # Find "creation date" of a file. (first added)
-    find-first-a= log --diff-filter=A --follow --format=%aD -1 --     
-    # Find "deletion date" of a file. (first deleted)
-    find-first-d= log --diff-filter=D --follow --format=%aD -1 -- 
-
-[merge]
-	tool = kdiff3
-[mergetool "kdiff3"]
-	path = /usr/bin/kdiff3
-	trustExitCode = false
-	prompt = false
-[diff]
-	tool = kdiff3
-[difftool "kdiff3"]
-	path = /usr/bin/kdiff3
-	trustExitCode = false
-	prompt = false
+  s = status
+  # fancy logs
+  tree = log --pretty=format:\"%h %ad | %s%d [%an]\" --graph --date=short
+  hist = log --graph --decorate --pretty=oneline --abbrev-commit --date=short
+  view = log --branches --remotes --decorate --oneline --graph --date=short
+  glog = log --graph --branches --remotes --decorate
+  # show files that changed on given commit
+  file-change = diff-tree --name-status -r
+  stash-unapply = !git stash show -p | git apply -R
+  # Once cloned, get the submodule.
+  sub-init= submodule update --init --recursive
+  # Update submodule
+  sub-up= submodule update
+  # Unaplies local commit but wont remove whats added to it.
+  re-lo-com= reset --soft HEAD~1
+  # Show diff in commit editor
+  com = commit -v
+  c = checkout
+  activebranch = "!git branch | egrep '^\\*' | sed 's/\\* //'"
+  out-to-main = "!git log master..`git activebranch`"
+  in-from-main = "!git log `git activebranch`..master"
+  # Find "creation date" of a file. (first added)
+  find-first-a= log --diff-filter=A --follow --format=%aD -1 --
+  # Find "deletion date" of a file. (first deleted)
+  find-first-d= log --diff-filter=D --follow --format=%aD -1 --
