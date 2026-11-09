@@ -1,15 +1,22 @@
 { config, lib, pkgs, ... }:
 
 {
-  imports = [
-    ./programs/zsh.nix
-  ];
 
   home.username = "foiki";
   home.homeDirectory = "/home/foiki";
   home.stateVersion = "26.05";
 
   programs.home-manager.enable = true;
+
+  programs.bash = {
+    enable = true;
+    initExtra = ''
+      source ${../config/bash/aliases.bash}
+    '';
+  };
+
+  xdg.configFile."git/config".source = ../config/git/config;
+  home.file.".vim/vimrc".source = ../config/vim/vimrc;
 
   wayland.windowManager.sway = {
     enable = true;
@@ -21,6 +28,12 @@
       modifier = "Mod4";
       terminal = "foot";
       menu = "fuzzel";
+
+      input."type:keyboard" = {
+        xkb_layout = "se";
+        # Mac key positions (e.g. @ on Alt+2); remove for a PC keyboard.
+        xkb_variant = "mac";
+      };
 
       keybindings = lib.mkOptionDefault {
         # Application launcher
