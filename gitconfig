@@ -4,8 +4,8 @@
   editor = vim
   trustctime = false
 [user]
-  name = Jonatan Karlsson
-  email = me@jonatankarlsson.se
+  name = Jonatan Ryman
+  email = cfoikila@gmail.com
 [push]
   default = simple
 [alias]
