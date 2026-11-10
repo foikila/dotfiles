@@ -64,15 +64,18 @@
 
   services.spice-vdagentd.enable = true;
 
+  fonts.packages = with pkgs; [ inter ];
+
   environment.systemPackages = with pkgs; [
-    git
-    vim 
+    firefox
     foot
     fuzzel
-    mako
-    wl-clipboard
+    git
     grim
+    mako
     slurp
+    vim 
+    wl-clipboard
   ];
 
   nix.settings.experimental-features = [
