@@ -1,6 +1,11 @@
 { config, lib, pkgs, ... }:
 
+let
+  # Full path: programs.sway also installs plain swaylock, which rejects the effects options.
+  lock = "${config.programs.swaylock.package}/bin/swaylock -f";
+in
 {
+  imports = [ ./sway-keybindings.nix ];
 
   home.username = "foiki";
   home.homeDirectory = "/home/foiki";
@@ -18,6 +23,31 @@
   xdg.configFile."git/config".source = ../config/git/config;
   home.file.".vim/vimrc".source = ../config/vim/vimrc;
 
+  programs.swaylock = {
+    enable = true;
+    package = pkgs.swaylock-effects;
+    settings = {
+      screenshots = true;
+      effect-blur = "7x5";
+      clock = true;
+      indicator = true;
+      fade-in = 0.2;
+    };
+  };
+
+  # Lock after 5 min idle, screen off after 10 min.
+  services.swayidle = {
+    enable = true;
+    timeouts = [
+      { timeout = 300; command = lock; }
+      {
+        timeout = 600;
+        command = "swaymsg 'output * power off'";
+        resumeCommand = "swaymsg 'output * power on'";
+      }
+    ];
+  };
+
   # Status bar; Sway launches it via `bars` below.
   programs.waybar = {
     enable = true;
@@ -25,7 +55,12 @@
       position = "top";
       modules-left = [ "sway/workspaces" "sway/mode" ];
       modules-center = [ "sway/window" ];
-      modules-right = [ "cpu" "memory" "disk" "clock" ];
+      modules-right = [ "cpu" "memory" "disk" "clock" "custom/power" ];
+      "custom/power" = {
+        format = "Power";
+        tooltip = false;
+        on-click = "swaynag -t warning -m 'Power menu' -Z 'Shut down' 'systemctl poweroff' -Z 'Reboot' 'systemctl reboot' -Z 'Lock' '${lock}'";
+      };
       cpu.format = "CPU {usage}%";
       memory.format = "RAM {percentage}%";
       disk.format = "Disk {percentage_used}%";
@@ -47,7 +82,7 @@
       #workspaces button.focused {
         background: #45475a;
       }
-      #cpu, #memory, #disk, #network, #clock {
+      #cpu, #memory, #disk, #clock, #custom-power {
         padding: 0 10px;
       }
     '';
@@ -79,15 +114,6 @@
         xkb_layout = "se";
         # Mac key positions (e.g. @ on Alt+2); remove for a PC keyboard.
         xkb_variant = "mac";
-      };
-
-      keybindings = lib.mkOptionDefault {
-        # Application launcher
-        "Mod4+d" = "exec fuzzel";
-
-        # Exit Sway
-        "Mod4+Shift+e" =
-          "exec swaynag -t warning -m 'Exit Sway?' -b 'Yes' 'swaymsg exit'";
       };
     };
   };

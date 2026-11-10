@@ -53,6 +53,8 @@
   programs.regreet.enable = true;
 
   security.polkit.enable = true;
+  # swaylock needs a PAM entry to check the password on unlock.
+  security.pam.services.swaylock = { };
 
   xdg.portal = {
     enable = true;
