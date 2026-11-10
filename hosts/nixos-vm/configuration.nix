@@ -30,6 +30,12 @@
 
   console.keyMap = "sv-latin1";
 
+  # Keyboard for the ReGreet login screen (cage reads these); Sway sets its own in home/foiki.nix.
+  environment.sessionVariables = {
+    XKB_DEFAULT_LAYOUT = "se";
+    XKB_DEFAULT_VARIANT = "mac";
+  };
+
   users.users.foiki = {
     isNormalUser = true;
     extraGroups = [ "wheel" "networkmanager" ];
@@ -42,6 +48,9 @@
     enable = true;
     wrapperFeatures.gtk = true;
   };
+
+  # Graphical login screen (greetd + ReGreet); lists Sway as a session.
+  programs.regreet.enable = true;
 
   security.polkit.enable = true;
 
