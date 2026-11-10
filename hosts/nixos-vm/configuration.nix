@@ -76,6 +76,8 @@
     slurp
     vim 
     wl-clipboard
+    filezilla
+    dbeaver-bin
   ];
 
   nix.settings.experimental-features = [

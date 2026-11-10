@@ -18,16 +18,39 @@
   xdg.configFile."git/config".source = ../config/git/config;
   home.file.".vim/vimrc".source = ../config/vim/vimrc;
 
-  # Generates ~/.config/i3status-rust/config-default.toml for the Sway bar.
-  programs.i3status-rust = {
+  # Status bar; Sway launches it via `bars` below.
+  programs.waybar = {
     enable = true;
-    bars.default.blocks = [
-      { block = "cpu"; }
-      { block = "memory"; }
-      { block = "disk_space"; path = "/"; }
-      { block = "net"; }
-      { block = "time"; }
-    ];
+    settings.main = {
+      position = "top";
+      modules-left = [ "sway/workspaces" "sway/mode" ];
+      modules-center = [ "sway/window" ];
+      modules-right = [ "cpu" "memory" "disk" "clock" ];
+      cpu.format = "CPU {usage}%";
+      memory.format = "RAM {percentage}%";
+      disk.format = "Disk {percentage_used}%";
+      clock.format = "{:%a %Y-%m-%d %H:%M}";
+    };
+    style = ''
+      * {
+        font-family: Inter, sans-serif;
+        font-size: 13px;
+      }
+      window#waybar {
+        background: #1e1e2e;
+        color: #cdd6f4;
+      }
+      #workspaces button {
+        padding: 0 8px;
+        color: #cdd6f4;
+      }
+      #workspaces button.focused {
+        background: #45475a;
+      }
+      #cpu, #memory, #disk, #network, #clock {
+        padding: 0 10px;
+      }
+    '';
   };
 
   wayland.windowManager.sway = {
@@ -50,17 +73,7 @@
       output."*".bg =
         "${pkgs.nixos-artwork.wallpapers.simple-dark-gray.gnomeFilePath} fill";
 
-      bars = [
-        {
-          position = "top";
-          fonts = {
-            names = [ "Inter" ];
-            size = 10.0;
-          };
-          statusCommand =
-            "i3status-rs ${config.xdg.configHome}/i3status-rust/config-default.toml";
-        }
-      ];
+      bars = [ { command = "waybar"; } ];
 
       input."type:keyboard" = {
         xkb_layout = "se";
