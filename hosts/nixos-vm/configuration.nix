@@ -80,6 +80,7 @@
     wl-clipboard
     filezilla
     dbeaver-bin
+    signal-desktop
   ];
 
   nix.settings.experimental-features = [
