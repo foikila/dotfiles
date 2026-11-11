@@ -4,4 +4,5 @@ alias ...="cd ../.."
 alias ....="cd ../../.."
 alias .....="cd ../../../.."
 
-# alias enp ="enpasscli -vault=/my-vault-dir/ -sort"
+# enpass-cli wants the folder holding vault.enpassdb (~/vault.enpassdb)
+alias enp='enpass-cli -vault="$HOME" -sort'

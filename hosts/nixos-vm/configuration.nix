@@ -34,6 +34,8 @@
   environment.sessionVariables = {
     XKB_DEFAULT_LAYOUT = "se";
     XKB_DEFAULT_VARIANT = "mac";
+    # Run Electron apps (Signal, etc.) natively on Wayland instead of XWayland.
+    NIXOS_OZONE_WL = "1";
   };
 
   users.users.foiki = {
