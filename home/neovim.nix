@@ -1,45 +1,50 @@
 { pkgs, ... }:
 
+# LazyVim: lazy.nvim downloads and updates the plugins itself on first start
+# (needs network). Nix provides Neovim, build tools and language servers;
+# Mason is disabled in config/nvim because its downloads don't run on NixOS.
 {
-  programs.neovim = {
-    enable = true;
+  home.packages = with pkgs; [
+    neovim
 
-    plugins = with pkgs.vimPlugins; [
-      (nvim-treesitter.withPlugins (p: [
-        p.bash
-        p.go
-        p.hcl
-        p.javascript
-        p.json
-        p.lua
-        p.markdown
-        p.nix
-        p.terraform
-        p.tsx
-        p.typescript
-        p.yaml
-      ]))
-      nvim-lspconfig
-      telescope-nvim
-      catppuccin-nvim
-    ];
+    # lazy.nvim and treesitter parser builds
+    gcc
+    tree-sitter
 
-    # Only on Neovim's PATH, not the shell's.
-    extraPackages = with pkgs; [
-      nixd
-      typescript-language-server
-      vscode-langservers-extracted # eslint
-      bash-language-server
-      shellcheck # used by bashls
-      gopls
-      terraform-ls
-      ripgrep # telescope live_grep
-      fd # telescope find_files
-    ];
+    # Pickers
+    ripgrep
+    fd
 
-    # Same base settings as Vim, then the Neovim-only setup.
-    extraLuaConfig = ''
-      vim.cmd.source("${../config/vim/vimrc}")
-    '' + builtins.readFile ../config/nvim/init.lua;
-  };
+    # Lua (LazyVim's own config)
+    lua-language-server
+    stylua
+
+    # Nix
+    nil
+    nixfmt
+    statix
+
+    # TypeScript/JavaScript
+    vtsls
+    vscode-langservers-extracted # eslint
+
+    # Bash
+    bash-language-server
+    shellcheck
+    shfmt
+
+    # Go
+    gopls
+    gotools # goimports
+    gofumpt
+    golangci-lint
+
+    opentofu
+    terraform-ls
+    tflint
+  ];
+
+  # Only these are linked, so ~/.config/nvim stays writable for lazy-lock.json.
+  xdg.configFile."nvim/init.lua".source = ../config/nvim/init.lua;
+  xdg.configFile."nvim/lua".source = ../config/nvim/lua;
 }
