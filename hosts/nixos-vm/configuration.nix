@@ -72,7 +72,18 @@
 
   environment.systemPackages = with pkgs; [
     dbeaver-bin
-    enpass-cli
+    # shortcut: pinned to 1.14.0 because 26.05 ships 1.7.0, which can't open
+    # Enpass 6.8+ vaults (SQLCipher v4). Drop the override once nixpkgs has >= 1.14.
+    (enpass-cli.overrideAttrs (_: rec {
+      version = "1.14.0";
+      src = fetchFromGitHub {
+        owner = "HazCod";
+        repo = "enpass-cli";
+        tag = "v${version}";
+        hash = "sha256-cVPPBuluUvPnPAlF+OEMYOOTSdPGbJmI1iSRlYqveFQ=";
+      };
+      vendorHash = "sha256-U9tnzok21yCFPDZprsvqq0NaO07qPS0L+IgVtF2hpvM=";
+    }))
     filezilla
     firefox
     foot
