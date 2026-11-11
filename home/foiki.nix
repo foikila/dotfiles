@@ -5,7 +5,11 @@ let
   lock = "${config.programs.swaylock.package}/bin/swaylock -f";
 in
 {
-  imports = [ ./sway-keybindings.nix ];
+  imports = [
+    ./sway-keybindings.nix
+    ./neovim.nix
+    ./bash-it.nix
+  ];
 
   home.username = "foiki";
   home.homeDirectory = "/home/foiki";

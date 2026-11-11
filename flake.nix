@@ -8,9 +8,15 @@
       url = "github:nix-community/home-manager/release-26.05";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Not a flake, just the source; used by home/bash-it.nix.
+    bash-it = {
+      url = "github:Bash-it/bash-it/v3.2.0";
+      flake = false;
+    };
   };
 
-  outputs = { nixpkgs, home-manager, ... }: {
+  outputs = { nixpkgs, home-manager, bash-it, ... }: {
     nixosConfigurations.nixos-vm = nixpkgs.lib.nixosSystem {
       system = "aarch64-linux";
 
@@ -22,6 +28,7 @@
         {
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
+          home-manager.extraSpecialArgs = { inherit bash-it; };
 
           home-manager.users.foiki =
             import ./home/foiki.nix;
