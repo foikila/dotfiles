@@ -69,18 +69,19 @@
   fonts.packages = with pkgs; [ inter ];
 
   environment.systemPackages = with pkgs; [
+    dbeaver-bin
+    enpass-cli
+    filezilla
     firefox
     foot
     fuzzel
     git
     grim
     mako
+    signal-desktop
     slurp
     vim 
     wl-clipboard
-    filezilla
-    dbeaver-bin
-    signal-desktop
   ];
 
   nix.settings.experimental-features = [

@@ -55,12 +55,7 @@ in
       position = "top";
       modules-left = [ "sway/workspaces" "sway/mode" ];
       modules-center = [ "sway/window" ];
-      modules-right = [ "cpu" "memory" "disk" "clock" "custom/power" ];
-      "custom/power" = {
-        format = "Power";
-        tooltip = false;
-        on-click = "swaynag -t warning -m 'Power menu' -Z 'Shut down' 'systemctl poweroff' -Z 'Reboot' 'systemctl reboot' -Z 'Lock' '${lock}'";
-      };
+      modules-right = [ "cpu" "memory" "disk" "clock"];
       cpu.format = "CPU {usage}%";
       memory.format = "RAM {percentage}%";
       disk.format = "Disk {percentage_used}%";
@@ -82,7 +77,7 @@ in
       #workspaces button.focused {
         background: #45475a;
       }
-      #cpu, #memory, #disk, #clock, #custom-power {
+      #cpu, #memory, #disk, #clock {
         padding: 0 10px;
       }
     '';
@@ -109,6 +104,11 @@ in
         "${pkgs.nixos-artwork.wallpapers.simple-dark-gray.gnomeFilePath} fill";
 
       bars = [ { command = "waybar"; } ];
+
+      # Apps launched once when Sway starts (not on reload).
+      startup = [
+        { command = "signal-desktop"; }
+      ];
 
       input."type:keyboard" = {
         xkb_layout = "se";
