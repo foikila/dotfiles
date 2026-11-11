@@ -20,6 +20,15 @@ in
     '';
   };
 
+  # One ssh-agent per login (systemd user service); the key is added on first use,
+  # so the passphrase is asked once per session.
+  services.ssh-agent.enable = true;
+  programs.ssh = {
+    enable = true;
+    enableDefaultConfig = false;
+    matchBlocks."*".addKeysToAgent = "yes";
+  };
+
   xdg.configFile."git/config".source = ../config/git/config;
   home.file.".vim/vimrc".source = ../config/vim/vimrc;
 
